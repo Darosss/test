@@ -1,0 +1,169 @@
+// ==UserScript==
+// @name         nowlootkappa
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://*.margonem.pl/
+// @icon         https://www.google.com/s2/favicons?domain=margonem.pl
+// @grant        none
+// ==/UserScript==
+ var divC = document.createElement("div"); var divDrag = document.createElement("div"); var divReset = document.createElement("button"); var divCopy = document.createElement("button");var normB = document.createElement("button");var uniB = document.createElement("button");var herB = document.createElement("button");var legB = document.createElement("button");
+    var divItemsNorm = document.createElement("div");var divItemsUni = document.createElement("div");var divItemsHer = document.createElement("div");var divItemsLeg = document.createElement("div");
+    divDrag.innerHTML = "<strong>ITEMKI</strong>"; divReset.innerHTML = "CLEAR"; divCopy.innerHTML = "COPY";normB.innerHTML = "ZWYKŁE";uniB.innerHTML = "UNI";herB.innerHTML = "HERO";legB.innerHTML = "LEGA";
+
+    divC.style = "top:100%;right:0;position:absolute;z-index: 9999;width:250px; height:65%; text-align:center; opacity:1;"
+    divDrag.style = "padding-top:5px;top:0;right:0;z-index: 9999;background-color:green; width:100%; height:40px;    border-image-slice: 15 15 15 15 fill; border-image-width: 10px 10px 10px 10px; border-image-outset: 0; border-image-repeat: round round; border-image-source: url(../img/gui/chat-cards.png?);"
+    divItemsNorm.style = "top:40px;left:0;z-index: 9999;background-color:gray;;position:absolute; width:100%; height:90%;overflow: scroll; visibility: visible;background: url(https://barlag.ct8.pl/img/pd/cloud.png); background-size: contain;color: #fff; font-family: Arimo;"
+    divItemsUni.style = "top:40px;left:0;z-index: 9999;background-color:gray;;position:absolute; width:100%; height:90%;overflow: scroll; visibility: hidden;color:yellow"
+    divItemsHer.style = "top:40px;left:0;z-index: 9999;background-color:gray;;position:absolute; width:100%; height:90%;overflow: scroll; visibility: hidden;color:blue"
+    divItemsLeg.style = "top:40px;left:0;z-index: 9999;background-color:gray;;position:absolute; width:100%; height:90%;overflow: scroll; visibility: hidden;color:orange"
+    divReset.style = "top:0px;right:0px;z-index: 9999;position:absolute; background-color:yellow; width:30%; height:7%;"
+    divCopy.style = "top:7%;right:0px;z-index: 9999;position:absolute; background-color:yellow; width:30%; height:6%;"
+    normB.style = "top:7%;left:0;z-index: 9999;position:absolute; background-color:yellow; width:20%; height:6%; font-size:7px;display: inline-block;"
+    uniB.style = "top:7%;left:17%;z-index: 9999;position:absolute; background-color:yellow; width:20%; height:6%;font-size:7px;display: inline-block;"
+    herB.style = "top:7%;left:33%;z-index: 9999;position:absolute; background-color:yellow; width:20%; height:6%;font-size:7px;display: inline-block;"
+    legB.style = "top:7%;left:50%;z-index: 9999;position:absolute; background-color:yellow; width:20%; height:6%;font-size:7px;display: inline-block;"
+    document.getElementsByClassName("left-column main-column")[0].style.height="52%";
+    document.head.insertAdjacentHTML("beforeend", `<style>
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height:10px
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: gray;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  background: gray;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background:lightgray;
+}
+</style>`
+)
+
+
+    divC.setAttribute("id","notepad");
+    divDrag.setAttribute("id","dragg");
+    divItemsNorm.setAttribute("id","divItemsNorm"); divItemsHer.setAttribute("id","divItemsHer"); divItemsLeg.setAttribute("id","divItemsLeg");
+    divItemsUni.innerHTML = "uni"; divItemsHer.innerHTML = "HERO HERO";divItemsLeg.innerHTML = "Lega lega";
+   document.body.appendChild(divC);
+    document.getElementsByClassName("left-column main-column")[0].appendChild(divC);
+    divC.appendChild(divDrag); divDrag.appendChild(divItemsNorm);divDrag.appendChild(divItemsUni);divDrag.appendChild(divItemsHer);divDrag.appendChild(divItemsLeg);
+    divC.appendChild(divReset); divC.appendChild(divCopy);divC.appendChild(normB);divC.appendChild(uniB);divC.appendChild(herB);divC.appendChild(legB);
+    normB.onclick = function(){
+        if(divItemsNorm.style.visibility === "hidden") {divItemsNorm.style.visibility = "visible";divItemsUni.style.visibility = "hidden"; divItemsHer.style.visibility = "hidden";divItemsLeg.style.visibility = "hidden";}
+        else divItemsNorm.style.visibility = "hidden";
+        return false;
+    };
+    uniB.onclick = function(){
+        if(divItemsUni.style.visibility === "hidden"){ divItemsUni.style.visibility = "visible";divItemsNorm.style.visibility = "hidden";divItemsHer.style.visibility = "hidden"; divItemsLeg.style.visibility = "hidden";}
+        else divItemsUni.style.visibility = "hidden";
+        return false;
+    };
+    herB.onclick = function(){
+        if(divItemsHer.style.visibility === "hidden"){ divItemsHer.style.visibility = "visible"; divItemsNorm.style.visibility = "hidden";divItemsUni.style.visibility = "hidden";divItemsLeg.style.visibility = "hidden";}
+        else divItemsHer.style.visibility = "hidden";
+        return false;
+    };
+
+    legB.onclick = function(){
+        if(divItemsLeg.style.visibility === "hidden") {divItemsLeg.style.visibility = "visible"; divItemsNorm.style.visibility = "hidden";divItemsUni.style.visibility = "hidden";divItemsHer.style.visibility = "hidden";}
+        else divItemsLeg.style.visibility = "hidden";
+        return false;
+    };
+    divReset.onclick = function(){
+        if (confirm('Czy napewno chcesz usunąc itemki?')) {
+            if(divItemsNorm.style.visibility =="visible"){
+                localStorage.removeItem("lootINorm");
+                divItemsNorm.innerHTML = "";
+            }
+            if(divItemsUni.style.visibility =="visible"){
+                localStorage.removeItem("lootIUni");
+                divItemsUni.innerHTML = "";
+            }
+            if(divItemsHer.style.visibility =="visible"){
+                localStorage.removeItem("lootIHer");
+                divItemsHer.innerHTML = "";
+            }
+            if(divItemsLeg.style.visibility =="visible"){
+                localStorage.removeItem("lootILeg");
+                divItemsLeg.innerHTML = "";
+            }
+
+
+        } else {
+        }
+        return false;
+    };
+    divCopy.onclick = function(){
+        var copyFrom="";
+            if(divItemsNorm.style.visibility =="visible") copyFrom="lootINorm";
+            else if(divItemsUni.style.visibility =="visible")copyFrom="lootIUni";
+            else if(divItemsHer.style.visibility =="visible")copyFrom="lootIHer";
+            else if(divItemsLeg.style.visibility =="visible")copyFrom="lootILeg";
+        var str = window.localStorage.getItem(copyFrom)
+        const el = document.createElement("textarea");
+        str = str.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "");
+        el.style.height = '0px';
+        el.style.width = '1px';
+        document.body.appendChild(el);
+        el.value = str;
+        el.select();
+        document.execCommand("copy");
+        document.body.removeChild(el);
+        return false;
+    };
+
+divItemsNorm.innerHTML =localStorage.getItem("lootINorm");divItemsUni.innerHTML =localStorage.getItem("lootIUni");divItemsHer.innerHTML =localStorage.getItem("lootIHer");divItemsLeg.innerHTML =localStorage.getItem("lootILeg");
+((Engine) =>{
+const handleCloseBattle = () => {
+    if(null == localStorage.getItem("lootINorm")) localStorage.setItem("lootINorm","");if(null == localStorage.getItem("lootIUni")) localStorage.setItem("lootIUni","");if(null == localStorage.getItem("lootIHer")) localStorage.setItem("lootIHer","");if(null == localStorage.getItem("lootILeg")) localStorage.setItem("lootILeg","");
+    if(Engine.items.fetchLocationItems("l").length>0){
+        //var tempItem = localStorage.getItem("lootINorm");
+        var tempItem;
+        
+    //var tempName = Engine.items.fetchLocationItems("l")[0].name;
+    var d = new Date();
+for(let z=1; z <= document.getElementsByClassName("loot-window")[0].children[1].children.length; z++){
+    if(Engine.items.fetchLocationItems("l")[Engine.items.fetchLocationItems("l").length-z].itemType === "t-norm"){
+        //message("NOM nom nom!");
+        tempItem = localStorage.getItem("lootINorm");
+        tempItem += "<p id='"+Engine.items.fetchLocationItems("l")[0].name+"[t_norm]'>"+ Engine.items.fetchLocationItems("l")[Engine.items.fetchLocationItems("l").length-z].name +";"+ d.getFullYear()+"-"+ d.getMonth()+"-"+ d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+"</p>\n" ;
+        localStorage.setItem("lootINorm",tempItem);
+        divItemsNorm.innerHTML = localStorage.getItem("lootINorm");
+    }
+    if(Engine.items.fetchLocationItems("l")[Engine.items.fetchLocationItems("l").length-z].itemType === "t-uniupg"){
+        message("UNI zjebie!");
+        tempItem = localStorage.getItem("lootIUni");
+        tempItem += "<p id='"+Engine.items.fetchLocationItems("l")[Engine.items.fetchLocationItems("l").length-z].name+"[t-uniupg]'>"+ Engine.items.fetchLocationItems("l")[Engine.items.fetchLocationItems("l").length-z].name +";"+ d.getFullYear()+"-"+ d.getMonth()+"-"+ d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+"</p>\n" ;
+        localStorage.setItem("lootIUni",tempItem);
+        divItemsUni.innerHTML = localStorage.getItem("lootIUni");
+    }
+    if(Engine.items.fetchLocationItems("l")[Engine.items.fetchLocationItems("l").length-z].itemType === "t-her"){
+        message("HERO chuju jebany!");
+        tempItem = localStorage.getItem("lootIHer");
+        tempItem += "<p id='"+Engine.items.fetchLocationItems("l")[0].name+"[t_her]'>"+ Engine.items.fetchLocationItems("l")[Engine.items.fetchLocationItems("l").length-z].name +";"+ d.getFullYear()+"-"+ d.getMonth()+"-"+ d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+"</p>\n" ;
+        localStorage.setItem("lootIHer",tempItem);
+        divItemsHer.innerHTML = localStorage.getItem("lootIHer");
+    }
+    if(Engine.items.fetchLocationItems("l")[Engine.items.fetchLocationItems("l").length-z].itemType === "t-leg"){
+        message("LEGA ok? dziwki nie chca spac!");
+        tempItem += "<p id='"+Engine.items.fetchLocationItems("l")[0].name+"[t_leg]'>"+ Engine.items.fetchLocationItems("l")[Engine.items.fetchLocationItems("l").length-z].name +";"+ d.getFullYear()+"-"+ d.getMonth()+"-"+ d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+ "</p>\n" ;
+        localStorage.setItem("lootILeg",tempItem);
+        divItemsLeg.innerHTML = localStorage.getItem("lootILeg");
+    }
+}
+    }
+}
+API.addCallbackToEvent('close_battle', handleCloseBattle)
+})(window.Engine);
